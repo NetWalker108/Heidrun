@@ -128,14 +128,19 @@ Example error response:
 * Run `docker volume prune` and select `yes` to delete all volumes
 * Run `make up` to start the containers up again
 
+_Note: Run `make admin-account` after updating admin login information._
+
 _Note: Sometimes laravel caches application config, so changing the `env/web` and restarting the container isn't enough.
 I recommend running `php artisan config:clear` inside the web container using `make shell` command._
 
+_Note: Make sure to change current directory to `application`(use `cd application`) after executing `make shell` command._ 
+
 ### Changing laravel application key
 
-* Run `make shell` and type `php artisan key:generate --show` command
+* Run `make shell` then proceed to change current directory to the `application` folder with `cd application` 
+* Type `php artisan key:generate --show` command
 * Copy the output and update `env/web` and change `APP_KEY` environment variable
-* Now run `php arisan migrate:fresh --seed` (inside the web container) to drop the database and re-run the migrations and re-seed the admin account
+* Now run `php artisan migrate:fresh --seed` (inside the web container) to drop the database and re-run the migrations and re-seed the admin account
 
 ### Caveats / Notes
 
